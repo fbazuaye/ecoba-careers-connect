@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -10,6 +11,19 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import ecobaLogo from '@/assets/ecoba-logo.png';
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff, GraduationCap, Building2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAuth } from '@/hooks/useAuth';
+
+const registerSchema = z.object({
+  fullName: z.string().trim().min(2, { message: 'Full name must be at least 2 characters' }).max(100),
+  email: z.string().trim().email({ message: 'Invalid email address' }).max(255),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  confirmPassword: z.string(),
+  role: z.enum(['member', 'employer']),
+  graduationYear: z.string().max(50).optional(),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
+});
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -17,11 +31,20 @@ const Register = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'member',
+    role: 'member' as 'member' | 'employer',
     graduationYear: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const { user, signUp } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -30,18 +53,35 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match');
+    // Validate input
+    const result = registerSchema.safeParse(formData);
+    if (!result.success) {
+      toast.error(result.error.errors[0].message);
       return;
     }
     
     setIsLoading(true);
     
-    // Simulate registration
-    setTimeout(() => {
-      toast.info('Registration coming soon! Connect Lovable Cloud to enable user accounts.');
+    const { error } = await signUp(formData.email, formData.password, {
+      full_name: formData.fullName,
+      role: formData.role,
+      graduation_year: formData.role === 'member' ? formData.graduationYear : undefined,
+    });
+    
+    if (error) {
+      if (error.message.includes('User already registered')) {
+        toast.error('An account with this email already exists. Please sign in instead.');
+      } else if (error.message.includes('Password')) {
+        toast.error('Password must be at least 6 characters');
+      } else {
+        toast.error(error.message);
+      }
       setIsLoading(false);
-    }, 1000);
+      return;
+    }
+    
+    toast.success('Account created successfully! Welcome to ECOBA Careers.');
+    navigate('/');
   };
 
   return (
