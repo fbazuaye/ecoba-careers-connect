@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import EmployerDashboard from "./pages/EmployerDashboard";
+import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/employer/dashboard" element={<EmployerDashboard />} />
+            <Route path="/member/profile" element={<MemberProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>

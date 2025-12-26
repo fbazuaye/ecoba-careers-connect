@@ -116,12 +116,14 @@ const Navbar = () => {
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link to="/profile" className="cursor-pointer">
-                      <User className="mr-2 h-4 w-4" />
-                      My Profile
-                    </Link>
-                  </DropdownMenuItem>
+                  {role === 'member' && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/member/profile" className="cursor-pointer">
+                        <User className="mr-2 h-4 w-4" />
+                        My Profile
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
                   {role === 'employer' && (
                     <DropdownMenuItem asChild>
                       <Link to="/employer/dashboard" className="cursor-pointer">
@@ -130,12 +132,6 @@ const Navbar = () => {
                       </Link>
                     </DropdownMenuItem>
                   )}
-                  <DropdownMenuItem asChild>
-                    <Link to="/settings" className="cursor-pointer">
-                      <Settings className="mr-2 h-4 w-4" />
-                      Settings
-                    </Link>
-                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleSignOut} className="text-destructive cursor-pointer">
                     <LogOut className="mr-2 h-4 w-4" />
@@ -200,12 +196,14 @@ const Navbar = () => {
                         </span>
                       )}
                     </div>
-                    <Link to="/profile" onClick={() => setIsOpen(false)}>
-                      <Button variant="ghost" className="w-full text-ecoba-cream/90 hover:text-ecoba-gold justify-start gap-2">
-                        <User className="w-4 h-4" />
-                        My Profile
-                      </Button>
-                    </Link>
+                    {role === 'member' && (
+                      <Link to="/member/profile" onClick={() => setIsOpen(false)}>
+                        <Button variant="ghost" className="w-full text-ecoba-cream/90 hover:text-ecoba-gold justify-start gap-2">
+                          <User className="w-4 h-4" />
+                          My Profile
+                        </Button>
+                      </Link>
+                    )}
                     {role === 'employer' && (
                       <Link to="/employer/dashboard" onClick={() => setIsOpen(false)}>
                         <Button variant="ghost" className="w-full text-ecoba-cream/90 hover:text-ecoba-gold justify-start gap-2">
