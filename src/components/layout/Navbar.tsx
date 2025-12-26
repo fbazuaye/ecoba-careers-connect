@@ -124,7 +124,7 @@ const Navbar = () => {
                   </DropdownMenuItem>
                   {role === 'employer' && (
                     <DropdownMenuItem asChild>
-                      <Link to="/dashboard" className="cursor-pointer">
+                      <Link to="/employer/dashboard" className="cursor-pointer">
                         <Briefcase className="mr-2 h-4 w-4" />
                         Dashboard
                       </Link>
@@ -207,7 +207,7 @@ const Navbar = () => {
                       </Button>
                     </Link>
                     {role === 'employer' && (
-                      <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                      <Link to="/employer/dashboard" onClick={() => setIsOpen(false)}>
                         <Button variant="ghost" className="w-full text-ecoba-cream/90 hover:text-ecoba-gold justify-start gap-2">
                           <Briefcase className="w-4 h-4" />
                           Dashboard
