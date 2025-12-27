@@ -40,45 +40,6 @@ const Employers = () => {
     },
   ];
 
-  const pricingPlans = [
-    {
-      name: 'Basic',
-      price: 'Free',
-      period: '',
-      description: 'Perfect for getting started',
-      features: ['1 active job posting', 'Basic applicant tracking', 'Email notifications', '30-day listing'],
-      featured: false,
-    },
-    {
-      name: 'Professional',
-      price: '₦50,000',
-      period: '/month',
-      description: 'For growing companies',
-      features: [
-        '5 active job postings',
-        'Featured job listings',
-        'Advanced applicant tracking',
-        'Priority support',
-        'Candidate search',
-      ],
-      featured: true,
-    },
-    {
-      name: 'Enterprise',
-      price: 'Custom',
-      period: '',
-      description: 'For large organizations',
-      features: [
-        'Unlimited job postings',
-        'Dedicated account manager',
-        'API access',
-        'Custom branding',
-        'Analytics dashboard',
-        'Recruitment consultation',
-      ],
-      featured: false,
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -152,65 +113,41 @@ const Employers = () => {
           </div>
         </section>
 
-        {/* Pricing */}
+        {/* Free Posting Banner */}
         <section className="py-16 lg:py-24 bg-muted/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="p-8 lg:p-12 text-center border-ecoba-gold/30 bg-gradient-to-br from-card to-ecoba-gold/5">
+              <Badge variant="gold" className="mb-6">
+                <CheckCircle className="w-4 h-4 mr-1" />
+                100% Free
+              </Badge>
               <h2 className="font-display text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                Simple, Transparent Pricing
+                Post Jobs for Free
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Choose the plan that fits your hiring needs
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                ECOBA Careers is completely free for employers. Post unlimited jobs, manage applications, and find top talent from our alumni network at no cost.
               </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {pricingPlans.map((plan, index) => (
-                <Card
-                  key={plan.name}
-                  className={`p-6 lg:p-8 relative transition-all duration-300 animate-slide-up ${
-                    plan.featured
-                      ? 'border-ecoba-gold shadow-lg scale-105 bg-gradient-to-br from-card to-ecoba-gold/5'
-                      : 'hover:border-ecoba-green/30 hover:shadow-md'
-                  }`}
-                  style={{ animationDelay: `${index * 0.1}s`, opacity: 0 }}
-                >
-                  {plan.featured && (
-                    <Badge variant="gold" className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      Most Popular
-                    </Badge>
-                  )}
-                  <div className="text-center mb-6">
-                    <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                      {plan.name}
-                    </h3>
-                    <div className="flex items-baseline justify-center gap-1">
-                      <span className="font-display text-4xl font-bold text-foreground">
-                        {plan.price}
-                      </span>
-                      {plan.period && (
-                        <span className="text-muted-foreground">{plan.period}</span>
-                      )}
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
-                  </div>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-ecoba-green flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant={plan.featured ? 'gold' : 'green-outline'}
-                    className="w-full"
-                  >
-                    Get Started
-                  </Button>
-                </Card>
-              ))}
-            </div>
+              <div className="grid sm:grid-cols-3 gap-6 mb-8">
+                <div className="flex flex-col items-center">
+                  <Briefcase className="w-8 h-8 text-ecoba-green mb-2" />
+                  <span className="font-semibold text-foreground">Unlimited Postings</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Users className="w-8 h-8 text-ecoba-green mb-2" />
+                  <span className="font-semibold text-foreground">Applicant Tracking</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Clock className="w-8 h-8 text-ecoba-green mb-2" />
+                  <span className="font-semibold text-foreground">Quick Setup</span>
+                </div>
+              </div>
+              <Link to="/register">
+                <Button variant="gold" size="xl">
+                  <Briefcase className="w-5 h-5" />
+                  Start Posting Jobs
+                </Button>
+              </Link>
+            </Card>
           </div>
         </section>
 
