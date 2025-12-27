@@ -27,9 +27,9 @@ const testimonials = [
   {
     type: 'jobseeker',
     name: 'Yomi Bamidele',
-    role: 'Project Manager at Seplat Energy',
+    role: 'Project Manager at BlueHorizon Energy',
     classYear: 'Class of 2016',
-    quote: "ECOBA Careers changed my career trajectory. I was stuck in a role that wasn't growing, but through the platform, I found an opportunity at Seplat Energy. A fellow Old Boy vouched for me, and now I'm managing multi-million naira projects. Proud to be an Old Boy!",
+    quote: "ECOBA Careers changed my career trajectory. I was stuck in a role that wasn't growing, but through the platform, I found an opportunity at BlueHorizon Energy. A fellow Old Boy vouched for me, and now I'm managing multi-million naira projects. Proud to be an Old Boy!",
     avatar: 'YB',
   },
 ];
