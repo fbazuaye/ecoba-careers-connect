@@ -6,7 +6,7 @@ const testimonials = [
     type: 'employer',
     name: 'Dr. Emeka Ibe',
     role: 'Founder & CEO, TechVantage Solutions',
-    quote: "We've hired 4 exceptional software engineers through ECOBA Careers. The quality of talent from the Old Boys network is outstanding - they come with not just skills, but the discipline and values instilled by Ecole. Our tech team is now 60% ECOBA alumni!",
+    quote: "We've hired 4 exceptional software engineers through ECOBA Careers. The quality of talent from the Old Boys network is outstanding - they come with not just skills, but the discipline and values instilled by Edo College. Our tech team is now 60% ECOBA alumni!",
     avatar: 'EI',
   },
   {
