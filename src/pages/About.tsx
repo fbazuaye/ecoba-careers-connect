@@ -21,7 +21,7 @@ const About = () => {
     {
       icon: Heart,
       title: 'Service',
-      description: 'Committed to giving back to our community through meaningful career connections.',
+      description: 'Committed to giving back to our EC through meaningful career connections.',
     },
     {
       icon: Shield,
